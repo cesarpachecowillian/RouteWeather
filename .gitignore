@@ -1,0 +1,33 @@
+# Env / segredos — nunca commitar
+.env
+.env.*
+!.env.example
+
+# Config local de ferramentas
+.claude/settings.local.json
+CLAUDE.md
+
+# Artefatos de teste manual da API
+trip.json
+trips.json
+response.json
+
+# Backend (Maven / Java)
+backend/target/
+*.class
+*.jar
+.mvn/
+.idea/
+*.iml
+
+# Frontend (Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

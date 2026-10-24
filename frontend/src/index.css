@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap');
+
+:root {
+  --bg: #f4f4f1;
+  --bg-soft: #eceae4;
+  --surface: #ffffff;
+  --surface-2: #fafaf7;
+  --line: #e3e2dc;
+  --line-strong: #0a0a0a;
+  --ink: #0a0a0a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #767676;
+  --ink-faint: #b8b6ae;
+  --accent: #0040ff;
+  --accent-strong: #002fbb;
+  --accent-soft: #e6ecff;
+  --success: #006d3b;
+  --danger: #d11919;
+  --warn: #c26b00;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'cv11';
+}
+
+.font-display {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+input[type="date"], input[type="time"] {
+  position: relative;
+  font-variant-numeric: tabular-nums;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+
+.leaflet-container { background: #e8e6dc !important; font-family: 'Inter', sans-serif !important; }
+.leaflet-popup-content-wrapper {
+  border-radius: 0 !important;
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1.5px solid var(--ink) !important;
+  box-shadow: 4px 4px 0 var(--ink) !important;
+}
+.leaflet-popup-tip { background: var(--surface) !important; border: 1.5px solid var(--ink) !important; }
+
+/* Custom tooltip on hover — render-your-own-card */
+.leaflet-tooltip.rw-tip {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  white-space: normal !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 12px !important;
+  color: inherit !important;
+  pointer-events: none;
+}
+.leaflet-tooltip.rw-tip:before { display: none !important; }
+.leaflet-control-attribution {
+  background: rgba(255,255,255,0.9) !important;
+  border-top: 1px solid var(--line) !important;
+}
+.leaflet-control-attribution a { color: var(--accent) !important; }
+.leaflet-bar a {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border-color: var(--ink) !important;
+  border-radius: 0 !important;
+}
+.leaflet-bar { box-shadow: 3px 3px 0 var(--ink) !important; }
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.2; }
+}
+.blink { animation: blink 1.1s step-end infinite; }
+
+@keyframes barber {
+  0% { background-position: 0 0; }
+  100% { background-position: 28px 0; }
+}
+.loading-bar {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0 8px,
+    var(--accent-strong) 8px 14px
+  );
+  background-size: 28px 100%;
+  animation: barber 0.8s linear infinite;
+}
+
+.shadow-pop { box-shadow: 3px 3px 0 var(--ink); }
+.shadow-pop-sm { box-shadow: 2px 2px 0 var(--ink); }

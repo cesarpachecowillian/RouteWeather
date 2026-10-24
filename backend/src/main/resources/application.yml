@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: route-weather-backend
+  jackson:
+    default-property-inclusion: non_null
+
+google:
+  routes:
+    api-key: ${GOOGLE_ROUTES_API_KEY:}
+    base-url: https://routes.googleapis.com/directions/v2:computeRoutes
+  geocoding:
+    # Defaults to the same key as Routes; enable the Geocoding API in Google Cloud
+    # Console for the key to use this. Falls back to Photon if disabled or empty.
+    api-key: ${GOOGLE_GEOCODING_API_KEY:${GOOGLE_ROUTES_API_KEY:}}
+    base-url: https://maps.googleapis.com/maps/api/geocode/json
+  places:
+    # Used for the address autocomplete suggestions. Requires "Places API (New)"
+    # to be enabled in Cloud Console. Falls back to Nominatim if not enabled.
+    api-key: ${GOOGLE_PLACES_API_KEY:${GOOGLE_ROUTES_API_KEY:}}
+
+openmeteo:
+  base-url: https://api.open-meteo.com/v1/forecast
+
+routeweather:
+  # Sampling rule for waypoints along a route:
+  #   - long trips: roughly one waypoint every 1.25 hours of travel
+  #   - short trips: at least `min-waypoints` regardless of duration
+  # Per trip, the actual interval is the minimum of the two — short trips end up
+  # densely sampled (more points), long trips fall back to the time-based target.
+  target-interval-hours: 1.25
+  min-waypoints: 8
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:3001}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.routeweather: INFO
